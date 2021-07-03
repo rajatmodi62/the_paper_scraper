@@ -4,7 +4,7 @@ A major issue with the opencvf [and nips/icml] website is that every paper's lin
 
 Anyways, i went ahead and wrote a scraper which downloads all the papers off the website in lexicographic order from opencvf's website and generates a merged manuscript. This should work as a temporary collection of all the proceedings. 
 
-None of the compiled papers here are my own work. I am just putting stuff att a single place so that i could go through it quickly to extract relevant ideas. Ok, enough about this. 
+None of the compiled papers here are my own work. I am just putting stuff att a single place so that i could go through it quickly to extract relevant ideas. 
 
 Here's how you must get it to work. 
 

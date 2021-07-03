@@ -5,6 +5,11 @@ from pathlib import Path
 import os 
 import wget
 from merge_pdf import merge_pdf
+from multiprocessing.pool import ThreadPool
+import requests
+from parfive import Downloader
+
+
 #scrape all the pdfs on a webpage 
 url = 'https://openaccess.thecvf.com/CVPR2021?day=all'
 http = httplib2.Http()
@@ -40,16 +45,12 @@ if os.path.exists(str(pdf_path)):
 local_data_path.mkdir(exist_ok=True)
 pdf_path.mkdir(exist_ok=True)
 
-print(pdf_links[0].split('/')[-1])
-print("going for downloading")
 
-# print(pdf_links)
-for pdf_no, link in enumerate(pdf_links):
-    #extract the pdf_links from the list 
-    print("trying.....",pdf_no,"out of",len(pdf_links))
+dl = Downloader()
+for link in pdf_links:
     file_name = link.split('/')[-1]
     save_path = pdf_path/file_name
-    wget.download("https://openaccess.thecvf.com/"+link, str(save_path))
-    print("downloaded",pdf_no,"out of",len(pdf_links))
-
-merge_pdf()
+    print("save+path",str(save_path))
+    dl.enqueue_file("https://openaccess.thecvf.com/"+link, path = str(save_path))
+print("done")
+files = dl.download()
